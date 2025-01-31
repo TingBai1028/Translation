@@ -71,16 +71,6 @@ function App() {
     }
   };
 
-  const translate = () => {
-    setDisabled(true);
-    setOutput('');
-    worker.current.postMessage({
-      text: input,
-      src_lang: sourceLanguage,
-      tgt_lang: targetLanguage,
-    });
-  }
-
   // Attach the callback function as an event listener.
   worker.current.addEventListener('message', onMessageReceived);
 
@@ -105,7 +95,16 @@ function App() {
       </div>
   
       {/* <button disabled={disabled} onClick={translate}>Translate</button> */}
-      <button disabled={disabled} onClick={() => alert("translation is not functioning")}>Translate</button>
+
+      <button disabled={disabled} onClick={() => {
+        setDisabled(true);
+        setOutput('');
+        worker.current.postMessage({
+          text: input,
+          src_lang: sourceLanguage,
+          tgt_lang: targetLanguage,
+        })
+      }}>Translate</button>
   
       <div className='progress-bars-container'>
         {ready === false && (
