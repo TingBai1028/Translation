@@ -104,7 +104,8 @@ function App() {
         </div>
       </div>
   
-      <button disabled={disabled} onClick={translate}>Translate</button>
+      {/* <button disabled={disabled} onClick={translate}>Translate</button> */}
+      <button disabled={disabled} onClick={() => alert("translation is not functioning")}>Translate</button>
   
       <div className='progress-bars-container'>
         {ready === false && (
